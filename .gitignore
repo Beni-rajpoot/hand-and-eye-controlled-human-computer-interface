@@ -14,8 +14,9 @@ config/user_profiles/*.json
 build/
 dist/
 *.spec
-web/downloads/*.exe
-web/downloads/*.zip
+
+# Download artifacts
+web/downloads/
 
 # IDE/OS
 .idea/

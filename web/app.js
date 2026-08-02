@@ -9,12 +9,15 @@ const defaultData = {
   users: [],
   downloads: 0,
   ratings: [],
-  activeUserEmail: null
+  activeUserEmail: null,
+  signupCompleted: false,
+  downloadUsed: false
 };
 
 function loadData() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw) : { ...defaultData };
+  const parsed = raw ? JSON.parse(raw) : {};
+  return { ...defaultData, ...parsed };
 }
 
 function saveData(data) {
@@ -27,14 +30,19 @@ function updateDownloadState() {
   if (!downloadBtn || !gate) return;
 
   const data = loadData();
-  if (data.activeUserEmail) {
+  const isUnlocked = Boolean(data.signupCompleted && data.activeUserEmail && !data.downloadUsed);
+  if (isUnlocked) {
     downloadBtn.classList.remove("disabled");
     downloadBtn.href = DOWNLOAD_URL;
     gate.textContent = `Download unlocked for ${data.activeUserEmail}.`;
   } else {
     downloadBtn.classList.add("disabled");
     downloadBtn.href = "#";
-    gate.textContent = "Signup is required before downloading the software.";
+    if (data.signupCompleted && data.activeUserEmail && data.downloadUsed) {
+      gate.textContent = "Download completed. Please signup again to download the software.";
+    } else {
+      gate.textContent = "Signup is required before downloading the software.";
+    }
   }
 }
 
@@ -101,7 +109,7 @@ function escapeHtml(value) {
 }
 
 const signupForm = document.getElementById("signup");
-if (signup) {
+if (signupForm) {
   signupForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = loadData();
@@ -117,6 +125,8 @@ if (signup) {
       data.users.push(user);
     }
     data.activeUserEmail = user.email;
+    data.signupCompleted = true;
+    data.downloadUsed = false;
     saveData(data);
 
     document.getElementById("signupMessage").textContent = existing
@@ -130,14 +140,16 @@ const downloadBtn = document.getElementById("downloadBtn");
 if (downloadBtn) {
   downloadBtn.addEventListener("click", (event) => {
     const data = loadData();
-    if (!data.activeUserEmail) {
+    if (!data.signupCompleted || !data.activeUserEmail || data.downloadUsed) {
       event.preventDefault();
       document.getElementById("downloadGate").textContent = "Please signup first to unlock the download.";
       document.getElementById("signup").scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     data.downloads += 1;
+    data.downloadUsed = true;
     saveData(data);
+    updateDownloadState();
   });
 }
 

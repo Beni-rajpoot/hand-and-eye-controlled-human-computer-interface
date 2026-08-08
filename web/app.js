@@ -1,4 +1,4 @@
-const DOWNLOAD_URL = "downloads/AI-HCI-Controller.exe";
+const DOWNLOAD_URL = "https://github.com/Beni-rajpoot/Hand-and-EyeControlled-Human-Computer-Interaction-System/releases/download/v1.0.0/HCI-Controller.exe";
 const STORAGE_KEY = "hciPortalData";
 const ADMIN_SESSION_KEY = "hciAdminLoggedIn";
 const ADMIN_EMAIL = "admin@gmail.com";

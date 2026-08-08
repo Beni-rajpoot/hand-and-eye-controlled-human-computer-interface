@@ -149,7 +149,10 @@ if (downloadBtn) {
     data.downloads += 1;
     data.downloadUsed = true;
     saveData(data);
+
+    setTimeout(() => {
     updateDownloadState();
+    }, 1000);
   });
 }
 

@@ -3,11 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+#page title 
   <title>Hands and Eye Controlled- Human Computer Interaction System -  Admin Dashboard</title>
+#CSS File
   <link rel="stylesheet" href="styles.css">
 </head>
+#Admin dashboard page
 <body class="admin-page">
+#Top bar
   <header class="topbar">
+#HCI Logo and Name
     <a class="brand" href="index.html" aria-label="Back to portal">
       <span class="brand-mark">HCI</span>
       <span>
@@ -15,19 +20,21 @@
         <small>Portal analytics</small>
       </span>
     </a>
+#Admin navigationn
     <nav aria-label="Admin navigation">
       <a href="index.html">Public page</a>
       <a id="adminLogout" href="#">Logout</a>
     </nav>
   </header>
-
+#Main dashboard section
   <main>
+#Dashboard heading
     <section class="admin-hero">
       <p class="eyebrow">Admin only</p>
       <h1>Portal activity overview</h1>
       <p>Track signups, downloads, and ratings collected from this browser demo.</p>
     </section>
-
+#Dashboard statistics
     <section class="panel dashboard">
       <div class="stats">
         <div><span id="userCount">0</span><small>Users</small></div>
@@ -36,23 +43,25 @@
         <div><span id="avgRating">0.0</span><small>Average rating</small></div>
       </div>
     </section>
-
+#Users and feedback section
     <section class="grid two">
+# Recent users
       <section class="panel">
         <h2>Recent users</h2>
         <div id="userList" class="list-table"></div>
       </section>
+#Recent Feedback
       <section class="panel">
         <h2>Recent feedback</h2>
         <div id="feedbackList" class="list-table"></div>
       </section>
     </section>
   </main>
-
+#Footer
   <footer>
     <p>For real deployment, protect this page with server-side admin login.</p>
   </footer>
-
+#JavaScript file
   <script src="app.js"></script>
 </body>
 </html>

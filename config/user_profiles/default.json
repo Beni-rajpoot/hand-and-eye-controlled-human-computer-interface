@@ -1,12 +1,12 @@
 {
-  "profile_name": "Balanced",
-  "smooth_alpha": 0.35,
-  "hand_weight": 0.75,
+  "profile_name": "Eye Only",
+  "smooth_alpha": 0.25,
+  "hand_weight": 0.0,
   "detection_confidence": 0.7,
   "tracking_confidence": 0.5,
-  "click_cooldown": 0.6,
-  "dwell_enabled": false,
-  "dwell_seconds": 1.5,
+  "click_cooldown": 0.9,
+  "dwell_enabled": true,
+  "dwell_seconds": 1.8,
   "camera_index": 0,
   "gaze_calibration": {
     "min_x": 0.6,
@@ -16,6 +16,6 @@
   },
   "active_modules": {
     "hand": true,
-    "eye": false
+    "eye": true
   }
 }

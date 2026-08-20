@@ -1,10 +1,13 @@
+//Download link
 const DOWNLOAD_URL = "https://github.com/Beni-rajpoot/Hand-and-EyeControlled-Human-Computer-Interaction-System/releases/download/v1.0.0/HCI-Controller.exe";
+// Local storage and admin session keys
 const STORAGE_KEY = "hciPortalData";
+// Admin login details
 const ADMIN_SESSION_KEY = "hciAdminLoggedIn";
 const ADMIN_EMAIL = "admin@gmail.com";
 const ADMIN_PASSWORD = "admin@123";
 let releaseAvailable = false;
-
+// Default portal data
 const defaultData = {
   users: [],
   downloads: 0,
@@ -13,17 +16,17 @@ const defaultData = {
   signupCompleted: false,
   downloadUsed: false
 };
-
+// Load data from local storage
 function loadData() {
   const raw = localStorage.getItem(STORAGE_KEY);
   const parsed = raw ? JSON.parse(raw) : {};
   return { ...defaultData, ...parsed };
 }
-
+// Save data to local storage
 function saveData(data) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
-
+// Update download button state
 function updateDownloadState() {
   const downloadBtn = document.getElementById("downloadBtn");
   const gate = document.getElementById("downloadGate");
@@ -45,7 +48,7 @@ function updateDownloadState() {
     }
   }
 }
-
+// Check if software release is available
 async function checkReleaseAvailability() {
   const downloadBtn = document.getElementById("downloadBtn");
   if (!downloadBtn) return;
@@ -58,11 +61,11 @@ async function checkReleaseAvailability() {
   }
   updateDownloadState();
 }
-
+// Update admin dashboard data
 function updateAdminDashboard() {
   const userCount = document.getElementById("userCount");
   if (!userCount) return;
-
+// Check admin login session
   if (sessionStorage.getItem(ADMIN_SESSION_KEY) !== "true") {
     window.location.href = "admin-login.html";
     return;
@@ -71,7 +74,7 @@ function updateAdminDashboard() {
   const data = loadData();
   const ratingTotal = data.ratings.reduce((sum, item) => sum + Number(item.rating), 0);
   const average = data.ratings.length ? ratingTotal / data.ratings.length : 0;
-
+// Show dashboard number
   userCount.textContent = data.users.length;
   document.getElementById("downloadCount").textContent = data.downloads;
   document.getElementById("ratingCount").textContent = data.ratings.length;
@@ -79,7 +82,7 @@ function updateAdminDashboard() {
 
   const userList = document.getElementById("userList");
   const feedbackList = document.getElementById("feedbackList");
-
+// Show recent users
   userList.innerHTML = data.users.length
     ? data.users.slice(-6).reverse().map((user) => `
       <div class="list-row">
@@ -88,7 +91,7 @@ function updateAdminDashboard() {
       </div>
     `).join("")
     : `<div class="list-row"><span>No users yet.</span></div>`;
-
+// Show recent feedback
   feedbackList.innerHTML = data.ratings.length
     ? data.ratings.slice(-6).reverse().map((item) => `
       <div class="list-row">
@@ -98,7 +101,7 @@ function updateAdminDashboard() {
     `).join("")
     : `<div class="list-row"><span>No ratings yet.</span></div>`;
 }
-
+// Escape HTML characters
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -107,19 +110,20 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-
+// Signup form
 const signupForm = document.getElementById("signup");
 if (signupForm) {
   signupForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = loadData();
+// Get user signup information   
     const user = {
       name: document.getElementById("fullName").value.trim(),
       email: document.getElementById("email").value.trim().toLowerCase(),
       role: document.getElementById("role").value,
       createdAt: new Date().toISOString()
     };
-
+ // Check if user already exists
     const existing = data.users.find((item) => item.email === user.email);
     if (!existing) {
       data.users.push(user);
@@ -128,24 +132,26 @@ if (signupForm) {
     data.signupCompleted = true;
     data.downloadUsed = false;
     saveData(data);
-
+  // Show signup message 
     document.getElementById("signupMessage").textContent = existing
       ? "Welcome back. Your download is unlocked."
       : "Account created. Your download is unlocked.";
     updateDownloadState();
   });
 }
-
+// Download button
 const downloadBtn = document.getElementById("downloadBtn");
 if (downloadBtn) {
   downloadBtn.addEventListener("click", (event) => {
     const data = loadData();
+// Check if signup is completed
     if (!data.signupCompleted || !data.activeUserEmail || data.downloadUsed) {
       event.preventDefault();
       document.getElementById("downloadGate").textContent = "Please signup first to unlock the download.";
       document.getElementById("signup").scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+ // Update download count and state
     data.downloads += 1;
     data.downloadUsed = true;
     saveData(data);
@@ -155,12 +161,13 @@ if (downloadBtn) {
     }, 1000);
   });
 }
-
+// Rating and feedback form
 const ratingForm = document.getElementById("ratingForm");
 if (ratingForm) {
   ratingForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = loadData();
+ // Save rating and feedback
     data.ratings.push({
       email: data.activeUserEmail || "anonymous",
       rating: Number(document.getElementById("rating").value),

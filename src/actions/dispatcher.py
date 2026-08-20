@@ -39,8 +39,16 @@ class ActionDispatcher:
             return
 
         # Always move cursor (smooth)
+       # Always move cursor (smooth)
+     # Always move cursor (smooth)
         if action != 'stop':
-            pyautogui.moveTo(x, y, duration=0)
+            screen_width, screen_height = pyautogui.size()
+
+            # Keep cursor away from screen corners
+            x = max(1, min(int(x), screen_width - 2))
+            y = max(1, min(int(y), screen_height - 2))
+
+        pyautogui.moveTo(x, y, duration=0)
 
         # Rising-edge click: fire only on transition INTO click gesture
         if action in ('click', 'blink_click'):

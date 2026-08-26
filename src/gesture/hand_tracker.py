@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 
+# Stores detected hand information
 @dataclass
 class HandData:
     landmarks: list          # raw normalized landmarks

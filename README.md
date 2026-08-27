@@ -1,6 +1,6 @@
 #  Hand & Eye HCI Controller
 
-Control your Windows PC using **hand gestures** and **eye gaze** — no mouse, no keyboard.
+Control your Windows PC using **hand gestures** and **eye gaze**  no mouse, no keyboard.
 
 ---
 

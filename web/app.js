@@ -179,7 +179,7 @@ if (ratingForm) {
     event.target.reset();
   });
 }
-
+// Handle administrator authentication
 const adminLoginForm = document.getElementById("adminLoginForm");
 if (adminLoginForm) {
   adminLoginForm.addEventListener("submit", (event) => {
@@ -198,6 +198,7 @@ if (adminLoginForm) {
     message.textContent = "Invalid email or password.";
   });
 }
+// Clear administrator session and return to the login page 
 
 const adminLogout = document.getElementById("adminLogout");
 if (adminLogout) {
@@ -207,7 +208,7 @@ if (adminLogout) {
     window.location.href = "admin-login.html";
   });
 }
-
+// Refresh application state and release information
 updateDownloadState();
 updateAdminDashboard();
 checkReleaseAvailability();

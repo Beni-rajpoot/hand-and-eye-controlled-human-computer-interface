@@ -1,19 +1,19 @@
 <!doctype html>
 <html lang="en">
- # Head section
+ <!-- Head section -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-#Page title
+  <!-- Page title -->
   <title>Admin Login - Hands and Eye Controlled Human Computer Interaction System</title>
-  #CSS file
+  <!-- CSS file -->
   <link rel="stylesheet" href="styles.css">
 </head>
-#Login page
+<!-- Login page -->
 <body class="login-page">
-#Top bar
+<!-- Top bar -->
   <header class="topbar">
-#HCI logo and name
+<!-- HCI logo and name -->
     <a class="brand" href="index.html" aria-label="Back to portal">
       <span class="brand-mark">HCI</span>
       <span>
@@ -21,42 +21,42 @@
         <small>Secure dashboard access</small>
       </span>
     </a>
-#Public page link
+<!-- Public page link -->
     <nav aria-label="Login navigation">
       <a href="index.html">Public page</a>
     </nav>
   </header>
-#Main login section
+<!-- Main login section -->
   <main class="login-main">
     <section class="login-card panel">
-#Admin login information
+<!-- Admin login information -->
       <p class="eyebrow">Admin only</p>
       <h1>Sign in to dashboard</h1>
       <p>Use the demo admin credentials to view portal users, downloads, and ratings.</p>
 
       <form id="adminLoginForm">
-#Email field
+<!-- Email field -->
         <label>
           Email
           <input id="adminEmail" type="email" autocomplete="username" placeholder="admin@gmail.com" required>
         </label>
-#Password field
+<!-- Password field -->
         <label>
           Password
           <input id="adminPassword" type="password" autocomplete="current-password" placeholder="admin@123" required>
         </label>
-#Login button
+<!-- Login button -->
         <button type="submit">Login</button>
-#Login message
+<!-- Login message -->
         <p id="adminLoginMessage" class="message" aria-live="polite"></p>
       </form>
     </section>
   </main>
-#Footer section
+<!-- Footer section -->
   <footer>
     <p>Demo credentials are for classroom testing only.</p>
   </footer>
-#JavaScript file
+<!-- JavaScript file -->
   <script src="app.js"></script>
 </body>
 </html>

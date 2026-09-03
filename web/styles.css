@@ -1,18 +1,19 @@
+/* Global styles and variables */
 :root {
   color-scheme: dark;
   font-family: "Segoe UI", Arial, sans-serif;
   background: #0c1016;
   color: #e8edf5;
 }
-
+/* Reset and base styles */
 * {
   box-sizing: border-box;
 }
-
+/* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
 }
-
+/* Body styles with background gradient and image */
 body {
   margin: 0;
   min-height: 100vh;
@@ -20,7 +21,7 @@ body {
     linear-gradient(180deg, rgba(7, 12, 19, 0.72), #0c1016 58%),
     url("https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1800&q=80") center/cover fixed;
 }
-
+/* Topbar styles for navigation and branding */
 .topbar {
   display: flex;
   justify-content: space-between;
@@ -34,7 +35,7 @@ body {
   top: 0;
   z-index: 2;
 }
-
+/* Brand styles for logo and text */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -42,7 +43,7 @@ body {
   color: #eef6ff;
   text-decoration: none;
 }
-
+/* Brand mark styles for logo icon */
 .brand-mark {
   display: grid;
   place-items: center;
@@ -53,30 +54,30 @@ body {
   color: #052116;
   font-weight: 900;
 }
-
+/* Brand text styles for strong and small elements */
 .brand strong,
 .brand small {
   display: block;
 }
-
+/* Brand strong styles for main text */
 .brand small {
   color: #aebdce;
   margin-top: 2px;
 }
-
+/* Navigation styles for links and footer */
 nav {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 }
-
+/* Navigation and footer link styles  */
 nav a,
 footer a {
   color: #d8e7f5;
   text-decoration: none;
   font-weight: 800;
 }
-
+/* SVG icon styles for size and stroke */
 svg {
   width: 20px;
   height: 20px;
@@ -86,19 +87,18 @@ svg {
   stroke-linejoin: round;
   stroke-width: 2;
 }
-
+/* Main content styles for width, margin, and padding */
 main {
   width: min(1140px, calc(100% - 32px));
   margin: 0 auto;
   padding: 36px 0;
 }
-
+/* Heading and paragraph styles for margin and font size */
 h1,
 h2,
 p {
   margin-top: 0;
 }
-
 h1 {
   max-width: 780px;
   margin-bottom: 18px;
@@ -127,7 +127,7 @@ h2 {
   gap: 30px;
   align-items: center;
 }
-
+/* Hero copy and admin hero paragraph styles for color, font size, and line height */
 .hero-copy p:not(.eyebrow),
 .admin-hero p,
 .panel p,
@@ -136,7 +136,6 @@ footer p {
   font-size: 16px;
   line-height: 1.6;
 }
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -163,7 +162,7 @@ footer p {
   color: #dcebf8;
   font-weight: 800;
 }
-
+/* Link and button styles for primary, secondary, and download actions */
 .primary-link,
 .secondary-link,
 button,
@@ -220,7 +219,7 @@ button,
   border-radius: 50%;
   background: #78d4ff;
 }
-
+/* Camera preview styles for height, position, and background */
 .camera-preview {
   height: 260px;
   position: relative;
@@ -237,7 +236,7 @@ button,
   background: #19f0a8;
   box-shadow: 0 0 22px #19f0a8;
 }
-
+/* Tracking box styles for position, border, color, and padding */
 .tracking-box {
   position: absolute;
   border: 2px solid #19f0a8;

@@ -39,6 +39,7 @@ class HandTracker:
         )
         self.mp_draw = mp.solutions.drawing_utils
         self._prev_y = None
+        
 
     def process(self, frame) -> Optional[HandData]:
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -109,10 +110,12 @@ class HandTracker:
             curr_y = lm[self.INDEX_TIP].y
             delta = 0.0
             if self._prev_y is not None:
-                delta = (curr_y - self._prev_y) * 20   # scale factor
+                raw_delta = (curr_y - self._prev_y) * 180  
+                delta = int(raw_delta)
+                
             self._prev_y = curr_y
             return 'scroll', delta
-
+        
         # Index only → move
         if index_up and not middle_up:
             return 'move', 0.0

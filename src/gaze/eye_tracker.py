@@ -49,14 +49,13 @@ class EyeTracker:
             max_num_faces=1,
             refine_landmarks=True,       # enables iris landmarks
             min_detection_confidence=detection_conf,
-            min_tracking_confidence=tracking_conf,
+            min_tracking_confidence=tracking_conf, 
         )
         #  Start MediaPipe Face Mesh
-        self._cal_min_x = 0.35
-        self._cal_max_x = 0.65
-        self._cal_min_y = 0.30
-        self._cal_max_y = 0.70
-
+        self._cal_min_x = 0.20
+        self._cal_max_x = 0.80
+        self._cal_min_y = 0.20
+        self._cal_max_y = 0.80
     def set_calibration(self, min_x, max_x, min_y, max_y):
         # Update calibration values
         self._cal_min_x = min_x

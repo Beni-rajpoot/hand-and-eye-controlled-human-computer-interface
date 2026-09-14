@@ -288,9 +288,9 @@ class MainWindow(QMainWindow):
         self.sp_cam.setRange(0, 9)
         self.sp_cam.setValue(self.config["camera_index"])
         camera_layout.addWidget(self.sp_cam)
-        btn_scan = QPushButton("Scan")
-        btn_scan.clicked.connect(self._scan_cameras)
-        camera_layout.addWidget(btn_scan)
+        self.btn_scan = QPushButton("Scan")
+        self.btn_scan.clicked.connect(self._scan_cameras)
+        camera_layout.addWidget(self.btn_scan)
         layout.addWidget(camera_box)
 
         btn_save = QPushButton("Save settings")
@@ -469,6 +469,7 @@ class MainWindow(QMainWindow):
         self.btn_pause.setEnabled(True)
         self.btn_pause.setText("Pause")
         self.btn_stop.setEnabled(True)
+        self.btn_scan.setEnabled(False)
         self.setup_actions.setText("Actions: running")
         self.statusBar().showMessage("Tracking active")
 
@@ -480,7 +481,8 @@ class MainWindow(QMainWindow):
         self.btn_start.setEnabled(True)
         self.btn_pause.setEnabled(False)
         self.btn_pause.setText("Pause")
-        self.btn_stop.setEnabled(False)
+        self.btn_scan.setEnabled(False)
+        self.btn_stop.setEnabled(True)
         self.camera_lbl.setPixmap(QPixmap())
         self.camera_lbl.setText("Camera preview")
         self.st_mode.set_value("Stopped")
@@ -496,6 +498,7 @@ class MainWindow(QMainWindow):
         self.st_mode.set_value("Paused" if self.is_paused else "Live")
         self.setup_actions.setText("Actions: paused" if self.is_paused else "Actions: running")
         self.statusBar().showMessage("Paused" if self.is_paused else "Tracking active", 2500)
+        self.btn_scan.setEnabled(self.is_paused)
 
     def _on_engine_finished(self):
         if self.engine:

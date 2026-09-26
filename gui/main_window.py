@@ -120,7 +120,7 @@ class StatCard(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("AI Hand & Eye HCI Controller")
+        self.setWindowTitle("Hand & Eye HCI Controller")
         self.setMinimumSize(1160, 730)
         self.setStyleSheet(DARK_STYLE)
 

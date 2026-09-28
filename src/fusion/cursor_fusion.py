@@ -17,6 +17,7 @@ class FusedOutput:
     action: str         # 'move', 'click', 'right_click', 'scroll', 'stop', 'blink_click'
     scroll_delta: float
     source: str         # 'hand', 'eye', 'fused'
+    holding: bool = False  
 
 
 class CursorFusion:
@@ -28,6 +29,7 @@ class CursorFusion:
         self.hand_weight = hand_weight          # 0.0–1.0
         self.eye_weight  = 1.0 - hand_weight
         self.smoother = EMASmoother(alpha=smooth_alpha)
+        self.last_pos = None
 
         # Dwell click (for motor-impaired users)
         self.dwell_enabled = False
@@ -88,6 +90,19 @@ class CursorFusion:
                 screen_x=0, screen_y=0,
                 action='stop', scroll_delta=0.0, source=source
             )
+        if gaze is not None and gaze.blink and self.last_pos is not None:
+            px, py = self.last_pos
+            return FusedOutput(
+            screen_x = px,
+            screen_y = py,
+            action = action,
+            scroll_delta= scroll_delta,
+            source = source,
+            holding = True,
+            )
+
+
+        
 
         # Smooth
         sx, sy = self.smoother.smooth(nx, ny)
@@ -97,7 +112,7 @@ class CursorFusion:
         py = int(sy * self.screen_h)
         px = max(0, min(self.screen_w - 1, px))
         py = max(0, min(self.screen_h - 1, py))
-
+        self.last_pos = (px, py)
         # Dwell click logic
         if self.dwell_enabled and action == 'move':
             import time, math

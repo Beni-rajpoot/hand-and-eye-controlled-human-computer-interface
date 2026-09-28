@@ -1,6 +1,6 @@
 """
 gui/main_window.py
-Main PyQt5 window for the AI Hand & Eye HCI Controller.
+Main PyQt5 window for the AI  Hand & Eye HCI Controller.
 """
 import cv2
 import numpy as np
